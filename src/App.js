@@ -12,13 +12,7 @@ const App = () => {
         <VideoChat />
       </main>
       <footer>
-        <p>
-          Made with{' '}
-          <span role="img" aria-label="React">
-            ⚛️
-          </span>{' '}
-          by <a href="https://twitter.com/philnash">philnash</a>
-        </p>
+        
       </footer>
     </div>
   );

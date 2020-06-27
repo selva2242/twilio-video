@@ -5,7 +5,9 @@ import Room from './Room';
 const VideoChat = () => {
   const [username, setUsername] = useState('');
   const [roomName, setRoomName] = useState('');
+  console.log("reinitialising it")
   const [token, setToken] = useState(null);
+
 
   const handleUsernameChange = useCallback(event => {
     setUsername(event.target.value);
@@ -18,7 +20,7 @@ const VideoChat = () => {
   const handleSubmit = useCallback(
     async event => {
       event.preventDefault();
-      const data = await fetch('/video/token', {
+      const data = await fetch('https://indigo-butterfly-4447.twil.io/Create-token', {
         method: 'POST',
         body: JSON.stringify({
           identity: username,
@@ -28,7 +30,8 @@ const VideoChat = () => {
           'Content-Type': 'application/json'
         }
       }).then(res => res.json());
-      setToken(data.token);
+      setToken(data);
+      console.log(token)
     },
     [roomName, username]
   );
@@ -38,6 +41,8 @@ const VideoChat = () => {
   }, []);
 
   let render;
+  console.log("coming")
+  console.log(token)
   if (token) {
     render = (
       <Room roomName={roomName} token={token} handleLogout={handleLogout} />
